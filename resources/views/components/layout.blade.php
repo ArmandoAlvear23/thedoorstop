@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>The Door Stop</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -12,16 +12,12 @@
 
         <!-- Vite directive -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     </head>
     <body>
-        <h1 class="bg-blue-700 text-white">Hello Vite + Tailwind!</h1>
-        <div x-data="{ open: false }">
-            <button @click="open = true">Hello</button>
-         
-            <span x-show="open">
-                AlpineJS!
-            </span>
-        </div>
+        <x-nav></x-nav>
+        <main>
+            {{ $slot }}
+        </main>
+        <x-footer></x-footer>
     </body>
 </html>
