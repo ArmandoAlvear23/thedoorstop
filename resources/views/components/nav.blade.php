@@ -43,8 +43,9 @@
         <nav class="" 
             x-cloak
             x-show="open"
-            x-transition.enter.duration.500ms
-            x-transition.leave.duration.400ms 
+            x-transition
+            {{-- x-transition.enter.duration.500ms
+            x-transition.leave.duration.400ms  --}}
         >
             <div class="bg-primary w-full h-screen">
                 <ul class="flex justify-center flex-col items-start px-8 text-4xl">
