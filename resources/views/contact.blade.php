@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="flex justify-center pt-6">
-                    <button class="bg-primary text-white rounded-lg py-2 w-1/2 text-lg hover:bg-gray-50 hover:text-primary hover:ring-2 hover:ring-primary shadow-lg">
+                    <button class="bg-primary text-white rounded-lg py-2 w-1/2 text-lg hover:bg-gray-50 hover:text-primary hover:ring-2 hover:ring-primary shadow-lg transition ease-out duration-500">
                         Send
                     </button>
                 </div>
