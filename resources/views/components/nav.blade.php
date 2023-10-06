@@ -20,13 +20,13 @@
         </div>
     </div>
     <nav class="bg-primary py-4 px-6 hidden sm:block shadow-md">
-        <ul class="flex space-x-7 lg:justify-center">
-            <li class="{{ Request::is('/doors/modern') ? 'border-b-2 border-secondary' : 'border-b-2 border-primary' }} hover:border-secondary"><a href="/doors/modern" class="text-white uppercase">Modern</a></li>
-            <li class="{{ Request::is('/doors/traditional') ? 'border-b-2 border-secondary' : 'border-b-2 border-primary' }} hover:border-secondary"><a href="/doors/traditional" class="text-white uppercase">Traditional</a></li>
-            <li class="{{ Request::is('/doors/rustic') ? 'border-b-2 border-secondary' : 'border-b-2 border-primary' }} hover:border-secondary"><a href="/doors/rustic" class="text-white uppercase">Rustic</a></li>
-            <li class="{{ Request::is('/doors/rustic') ? 'border-b-2 border-secondary' : 'border-b-2 border-primary' }} hover:border-secondary"><a href="doors/craftsman" class="text-white uppercase">Craftsman</a></li>
-            <li class="{{ Request::is('/about') ? 'border-b-2 border-secondary' : 'border-b-2 border-primary' }} hover:border-secondary"><a href="/about" class="text-white uppercase">About</a></li>
-            <li class="{{ Request::is('/contact') ? 'border-b-2 border-secondary' : 'border-b-2 border-primary' }} hover:border-secondary"><a href="/contact" class="text-white uppercase">Contact</a></li>
+        <ul class="flex sm:space-x-7 lg:justify-center">
+            <li class="{{ Request::is('/doors/modern') ? 'border-secondary' : 'border-transparent' }} border-b-2 hover:border-secondary transition ease-out duration-500"><a href="/doors/modern" class="text-white uppercase">Modern</a></li>
+            <li class="{{ Request::is('/doors/traditional') ? 'border-secondary' : 'border-transparent' }} border-b-2 hover:border-secondary transition ease-out duration-500"><a href="/doors/traditional" class="text-white uppercase">Traditional</a></li>
+            <li class="{{ Request::is('/doors/rustic') ? 'border-secondary' : 'border-transparent' }} border-b-2 hover:border-secondary transition ease-out duration-500"><a href="/doors/rustic" class="text-white uppercase">Rustic</a></li>
+            <li class="{{ Request::is('/doors/rustic') ? 'border-secondary' : 'border-transparent' }} border-b-2 hover:border-secondary transition ease-out duration-500"><a href="doors/craftsman" class="text-white uppercase">Craftsman</a></li>
+            <li class="{{ Request::is('/about') ? 'border-secondary' : 'border-transparent' }} border-b-2 hover:border-secondary transition ease-out duration-500"><a href="/about" class="text-white uppercase">About</a></li>
+            <li class="{{ Request::is('/contact') ? 'border-secondary' : 'border-transparent' }} border-b-2 hover:border-secondary transition ease-out duration-500"><a href="/contact" class="text-white uppercase">Contact</a></li>
         </ul>
     </nav>
 </header>
