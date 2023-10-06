@@ -19,7 +19,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     </head>
     <body>
         <x-nav></x-nav>
-        <main class="px-10 lg:px-56">
+        <main>
             {{ $slot }}
         </main>
         <x-footer></x-footer>
