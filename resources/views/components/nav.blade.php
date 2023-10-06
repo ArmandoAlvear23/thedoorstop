@@ -19,7 +19,7 @@
                     <i class="fa-solid fa-xl text-white" :class="open ? 'fa-x' : 'fa-bars'"></i>
                 </button>
                 <div  class="text-right hidden sm:block">
-                    <a href="tel:956-574-9071" class="font-bold text-red-600"><span><i class="fa-solid fa-phone fa-shake"></i> (956) 574-9071</span></a>
+                    <a href="tel:956-574-9071" class="font-bold text-gray-700"><span><i class="fa-solid fa-phone fa-shake"></i> (956) 574-9071</span></a>
                     <ul class="text-xs text-gray-700">
                         <li>Mon-Fri: 8:30a-5:30p</li>
                         <li>Saturday: 10a-2p</li>
