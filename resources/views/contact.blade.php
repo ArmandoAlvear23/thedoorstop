@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="px-10 lg:px-56">
+    <x-padding-wrapper>
         <h1 class="text-center text-4xl text-primary mt-10">Contact Us</h1>
         <h3 class="text-center text-xl text-gray-600 mt-4">We welcome any questions, comments, or feedback you have. Feel free to reach out and we'll be sure to get back to you as soon as possible.</h3>
         <div class="grid lg:grid-cols-2 gap-4 mb-20">
@@ -74,5 +74,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </x-padding-wrapper>
 </x-layout>
