@@ -61,8 +61,8 @@
                             <input type="text" class="border border-gray-200 rounded mt-2 p-2 w-full h-8" name="email" placeholder="Enter your email"/>
                         </div>
                         <div class="col-span-2">
-                            <label for="name" class="text-xl text-primary font-bold" rows="10">Message</label>
-                            <textarea class="border border-gray-200 rounded mt-2 p-2 w-full" name="message" placeholder="Questions, comments, or feedback" rows="10"></textarea>
+                            <label for="name" class="text-xl text-primary font-bold">Message</label>
+                            <textarea class="border border-gray-200 rounded mt-2 p-2 w-full" name="message" placeholder="Questions, comments, or feedback" rows="3"></textarea>
                         </div>
                     </div>
 
