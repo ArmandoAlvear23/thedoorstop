@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,9 @@ Route::get('/contact', function() {
 Route::get('/about', function() {
     return view('about');
 });
+
+// All Messages
+Route::get('/internal/messages', [MessageController::class, 'index']);
+
+// Single Message
+Route::get('/internal/messages/{listing}', [MessageController::class, 'show']);
