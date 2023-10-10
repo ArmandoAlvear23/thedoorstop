@@ -41,11 +41,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Create doors
-        Door::create([
-            'name' => '',
-            'sku' => '',
-            'img_location' => '',
-        ]);
+        // Door::create([
+        //     'name' => '',
+        //     'sku' => '',
+        //     'img_location' => '',
+        // ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
