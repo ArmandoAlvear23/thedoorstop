@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\MessageController;
+use App\Models\Door;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $door = Door::find(1);
+        $door->categories()->sync([1, 2, 3]);
+        echo('attached categories!');
     return view('index');
 });
 
@@ -26,8 +30,13 @@ Route::get('/about', function() {
     return view('about');
 });
 
+// Get All Doors That Belong To Passed In Category
+Route::get('/doors/{category}', [DoorController::class, 'index']);
+
 // All Messages
 Route::get('/internal/messages', [MessageController::class, 'index']);
 
 // Single Message
 Route::get('/internal/messages/{listing}', [MessageController::class, 'show']);
+
+Route::post('/doors', [DoorController::class, 'store']);
