@@ -49,20 +49,59 @@
                 </div>
             </div>
             <div class="bg-gray-50 border border-gray-200 border-y-sky-300 border-y-4 rounded p-10 pb-12 mt-8 shadow-xl">
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('storeMessage') }}">
                     @csrf
                     <div class="grid grid-cols-2 gap-4">
                         <div class="col-span-2 sm:col-span-1 lg:col-span-2">
-                            <label for="name" class="text-xl text-primary font-bold">Name</label>
-                            <input type="text" class="border border-gray-200 rounded mt-2 p-2 w-full h-8" name="name" placeholder="Enter your name"/>
+                            <label 
+                                for="name" 
+                                class="text-xl text-primary font-bold"
+                                >Name</label
+                            >
+                            <input 
+                                type="text" 
+                                class="border border-gray-200 rounded mt-2 p-2 w-full h-8" 
+                                name="name" 
+                                placeholder="Enter your name"
+                                value="{{ old('name') }}"
+                            />
+                            @error('name')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-span-2 sm:col-span-1 lg:col-span-2">
-                            <label for="name" class="text-xl text-primary font-bold">Email</label>
-                            <input type="text" class="border border-gray-200 rounded mt-2 p-2 w-full h-8" name="email" placeholder="Enter your email"/>
+                            <label 
+                                for="name" 
+                                class="text-xl text-primary font-bold">
+                                Email</label
+                            >
+                            <input 
+                                type="text" 
+                                class="border border-gray-200 rounded mt-2 p-2 w-full h-8" 
+                                name="email" 
+                                placeholder="Enter your email"
+                                value="{{ old('email') }}"
+                            />
+                            @error('email')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="col-span-2">
-                            <label for="name" class="text-xl text-primary font-bold">Message</label>
-                            <textarea class="border border-gray-200 rounded mt-2 p-2 w-full" name="message" placeholder="Questions, comments, or feedback" rows="3"></textarea>
+                            <label 
+                                for="name" 
+                                class="text-xl text-primary font-bold"
+                                >Message</label
+                            >
+                            <textarea 
+                                class="border border-gray-200 rounded mt-2 p-2 w-full" 
+                                name="message" 
+                                placeholder="Questions, comments, or feedback" 
+                                rows="3"
+                                >{{ old('message') }}</textarea
+                            >
+                            @error('message')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 

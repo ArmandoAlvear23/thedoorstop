@@ -28,6 +28,9 @@ Route::post('/doors', [DoorController::class, 'store']);
 // All Messages
 Route::get('/internal/messages', [MessageController::class, 'index']);
 
+// Store Message
+Route::post('/internal/messages', [MessageController::class, 'store'])->name('storeMessage');
+
 // Single Message
 Route::get('/internal/messages/{listing}', [MessageController::class, 'show']);
 
