@@ -106,4 +106,4 @@ Route::get('/internal/messages', [MessageController::class, 'index']);
 Route::post('/internal/messages', [MessageController::class, 'store'])->name('storeMessage');
 
 // Get Show Message View
-Route::get('/internal/messages/{listing}', [MessageController::class, 'show']);
+Route::get('/internal/messages/{listing}', [MessageController::class, 'show'])->name('showMessage');

@@ -9,7 +9,7 @@ class MessageController extends Controller
 {
     // Show all messages
     public function index() {
-        return view('internal.messages.index', [
+        return view('messages.index', [
             'messages' => Message::latest()->filter(request(['search']))->paginate(25),
             'search' => request(['search'])
         ]);
@@ -30,7 +30,7 @@ class MessageController extends Controller
 
     // Show single message
     public function show(Message $message) {
-        return view('internal.messages.show', [
+        return view('messages.show', [
             'message' => $message
         ]);
     }
