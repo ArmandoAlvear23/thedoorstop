@@ -6,9 +6,10 @@
                     <thead>
                         <tr>
                             <th class="bg-blue-200 border px-6 py-4 flex justify-between">
-                                <div class="flex items-center">
+                                <div class="flex items-center mr-2">
                                     <span class="text-xl font-medium">{{ ucfirst($classification->name); }}</span>
                                     <button onclick="window.location='{{ URL::route('editClassification', ['classification' => $classification]); }}'" class="text-white font-normal rounded bg-blue-500 hover:bg-blue-600 px-2 py-0.5 ml-2 hover:cursor-pointer"><i class="fa-regular fa-pen-to-square fa-sm"></i> Edit</button>
+                                    @unless(count($classification->categories) > 0)
                                     <form method="POST" action="{{ URL::route('destroyClassification', ['classification' => $classification]); }}">
                                         @csrf
                                         @method("DELETE")
@@ -19,6 +20,7 @@
                                             Delete
                                         </button>
                                     </form>
+                                    @endunless
                                 </div>
                                 <a href="{{ route('createCategory', ['classification' => $classification]) }}" class="text-white rounded bg-green-500 hover:bg-green-600 px-5 py-1.5">Add <i class="fa-solid fa-plus"></i></a>
                             </th>
