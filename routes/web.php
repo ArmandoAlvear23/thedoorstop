@@ -63,3 +63,6 @@ Route::get('/internal/door/classifications/{classification}/edit', [Classificati
 
 // Update Classification
 Route::put('/internal/door/classifications/{classification}', [ClassificationController::class, 'update'])->name('updateClassification');
+
+// Destroy Classification
+Route::delete('/internal/door/classifications/{classification}', [ClassificationController::class, 'destroy'])->name('destroyClassification');

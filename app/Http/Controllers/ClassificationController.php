@@ -40,4 +40,16 @@ class ClassificationController extends Controller
 
         return redirect('/internal/door/categories')->with('message', 'Classification updated successfully!');
     }
+
+    // Destroy Classification
+    public function destroy(Classification $classification) {
+        
+        if(count($classification->categories) != 0) {
+            abort(403, 'Unauthorized Action: There are ' . count($classification->categories) . ' doors attached to this category');
+        }
+
+        $classification->delete();
+        
+        return redirect('/internal/door/categories')->with('message', 'Classification deleted successfully!');
+    }
 }

@@ -6,11 +6,21 @@
                     <thead>
                         <tr>
                             <th class="bg-blue-200 border px-6 py-4 flex justify-between">
-                                <div>
+                                <div class="flex items-center">
                                     <span class="text-xl font-medium">{{ ucfirst($classification->name); }}</span>
-                                    <button onclick="window.location='{{ URL::route('editClassification', ['classification' => $classification]); }}'" class="text-white rounded bg-blue-500 hover:bg-blue-600 px-2 py-0.5 ml-2 hover:cursor-pointer">Edit</button>
+                                    <button onclick="window.location='{{ URL::route('editClassification', ['classification' => $classification]); }}'" class="text-white font-normal rounded bg-blue-500 hover:bg-blue-600 px-2 py-0.5 ml-2 hover:cursor-pointer"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
+                                    <form method="POST" action="{{ URL::route('destroyClassification', ['classification' => $classification]); }}">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button class="text-white font-normal rounded bg-red-500 hover:bg-red-600 px-2 py-0.5 ml-2 hover:cursor-pointer disabled:bg-red-300 disabled:cursor-auto" {{ count($classification->categories) > 0 ? 'disabled' : '' }}>
+                                            <i
+                                                class="fa-solid fa-trash-can"
+                                            ></i>
+                                            Delete
+                                        </button>
+                                    </form>
                                 </div>
-                                <a href="{{ route('createCategory', ['classification' => $classification]) }}" class="text-white rounded bg-green-500 hover:bg-green-600 px-5 py-1.5">Add</a>
+                                <a href="{{ route('createCategory', ['classification' => $classification]) }}" class="text-white rounded bg-green-500 hover:bg-green-600 px-5 py-1.5">Add <i class="fa-solid fa-plus"></i></a>
                             </th>
                         </tr>
                     </thead>
@@ -24,7 +34,7 @@
                                             <span class="text-xs text-gray-500 align-bottom">doors: {{ $category->doors_count }}</span>
                                         </div>
                                         <div class="flex flex-row space-x-3">
-                                            <button onclick="window.location='{{ URL::route('editCategory', ['category' => $category]); }}'" class="text-white rounded bg-blue-500 hover:bg-blue-600 px-3 py-1.5 hover:cursor-pointer">Edit</button>
+                                            <button onclick="window.location='{{ URL::route('editCategory', ['category' => $category]); }}'" class="text-white rounded bg-blue-500 hover:bg-blue-600 px-3 py-1.5 hover:cursor-pointer"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
                                             
                                             <form method="POST" action="{{ URL::route('destroyCategory', ['category' => $category]); }}">
                                                 @csrf
