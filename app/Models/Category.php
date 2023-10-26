@@ -11,7 +11,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'classification_id'];
 
     public function scopeFilter($query, array $filters) {
 
