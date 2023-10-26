@@ -32,7 +32,7 @@
                     >
                     <select name="classification_id" id="classification_id" class="border border-gray-200 rounded p-2 w-full">
                         @foreach ($dbClassificationList as $dbClassification)
-                        <option value="{{ $dbClassification->id }}">{{ ucfirst($dbClassification->name); }}</option>
+                        <option value="{{ $dbClassification->id }}" {{ $dbClassification->id == $classification->id ? 'selected' : '' }}>{{ ucfirst($dbClassification->name); }}</option>
                         @endforeach
                     </select>
                     @error('classification_id')

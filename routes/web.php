@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoorController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClassificationController;
 
 Route::get('/', function () {
     return view('pages.index');
@@ -51,4 +52,6 @@ Route::delete('/internal/door/categories/{category}', [CategoryController::class
 // Get Create Classification View
 Route::get('/internal/door/classifications/create/', [ClassificationController::class, 'create'])->name('createClassification');
 
+// Store New Classification
+Route::post('/internal/door/classifications', [ClassificationController::class, 'store'])->name('storeClassification');
 
