@@ -60,6 +60,6 @@ class CategoryController extends Controller
         }
         
         $category->delete();
-        return redirect('/internal/door/categories')->with('message', 'Category deleted uccessfully!');
+        return redirect('/internal/door/categories')->with('message', 'Category deleted successfully!');
     }
 }
