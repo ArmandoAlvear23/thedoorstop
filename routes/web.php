@@ -58,3 +58,8 @@ Route::get('/internal/door/classifications/create/', [ClassificationController::
 // Store New Classification
 Route::post('/internal/door/classifications', [ClassificationController::class, 'store'])->name('storeClassification');
 
+// Get Edit Classification View
+Route::get('/internal/door/classifications/{classification}/edit', [ClassificationController::class, 'edit'])->name('editClassification');
+
+// Update Classification
+Route::put('/internal/door/classifications/{classification}', [ClassificationController::class, 'update'])->name('updateClassification');

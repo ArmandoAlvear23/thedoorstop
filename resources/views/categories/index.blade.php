@@ -6,7 +6,10 @@
                     <thead>
                         <tr>
                             <th class="bg-blue-200 border px-6 py-4 flex justify-between">
-                                <span class="text-xl font-medium">{{ ucfirst($classification->name); }}</span>
+                                <div>
+                                    <span class="text-xl font-medium">{{ ucfirst($classification->name); }}</span>
+                                    <button onclick="window.location='{{ URL::route('editClassification', ['classification' => $classification]); }}'" class="text-white rounded bg-blue-500 hover:bg-blue-600 px-2 py-0.5 ml-2 hover:cursor-pointer">Edit</button>
+                                </div>
                                 <a href="{{ route('createCategory', ['classification' => $classification]) }}" class="text-white rounded bg-green-500 hover:bg-green-600 px-5 py-1.5">Add</a>
                             </th>
                         </tr>
