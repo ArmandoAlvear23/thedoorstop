@@ -10,6 +10,8 @@ class Door extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'sku', 'img_location'];
+
     public function scopeFilter($query, array $filters) {
         if($filters['category'] ?? false) {
             $query->where('');
