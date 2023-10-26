@@ -8,13 +8,13 @@
                             <th class="bg-blue-200 border px-6 py-4 flex justify-between">
                                 <div class="flex items-center">
                                     <span class="text-xl font-medium">{{ ucfirst($classification->name); }}</span>
-                                    <button onclick="window.location='{{ URL::route('editClassification', ['classification' => $classification]); }}'" class="text-white font-normal rounded bg-blue-500 hover:bg-blue-600 px-2 py-0.5 ml-2 hover:cursor-pointer"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
+                                    <button onclick="window.location='{{ URL::route('editClassification', ['classification' => $classification]); }}'" class="text-white font-normal rounded bg-blue-500 hover:bg-blue-600 px-2 py-0.5 ml-2 hover:cursor-pointer"><i class="fa-regular fa-pen-to-square fa-sm"></i> Edit</button>
                                     <form method="POST" action="{{ URL::route('destroyClassification', ['classification' => $classification]); }}">
                                         @csrf
                                         @method("DELETE")
                                         <button class="text-white font-normal rounded bg-red-500 hover:bg-red-600 px-2 py-0.5 ml-2 hover:cursor-pointer disabled:bg-red-300 disabled:cursor-auto" {{ count($classification->categories) > 0 ? 'disabled' : '' }}>
                                             <i
-                                                class="fa-solid fa-trash-can"
+                                                class="fa-solid fa-trash-can fa-sm"
                                             ></i>
                                             Delete
                                         </button>
