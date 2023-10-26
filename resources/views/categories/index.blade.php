@@ -7,7 +7,7 @@
                         <tr>
                             <th class="bg-blue-200 border px-6 py-4 flex justify-between">
                                 <span class="text-xl font-medium">{{ ucfirst($classification->name); }}</span>
-                                <a href="{{ route('create_category', ['classification' => $classification]) }}" class="text-white rounded bg-green-500 hover:bg-green-600 px-5 py-1.5">Add</a>
+                                <a href="{{ route('createCategory', ['classification' => $classification]) }}" class="text-white rounded bg-green-500 hover:bg-green-600 px-5 py-1.5">Add</a>
                             </th>
                         </tr>
                     </thead>
@@ -20,9 +20,19 @@
                                             <span>{{ ucfirst($category->name); }}</span>
                                             <span class="text-xs text-gray-500 align-bottom">doors: {{ $category->doors_count }}</span>
                                         </div>
-                                        <div class="">
-                                            <button class="text-white rounded bg-blue-500 hover:bg-blue-600 px-5 py-1.5">Edit</button>
-                                            <button class="text-white rounded bg-red-500 hover:bg-red-600 px-5 py-1.5">Delete</button>
+                                        <div class="flex flex-row space-x-3">
+                                            <button onclick="window.location='{{ URL::route('editCategory', ['category' => $category]); }}'" class="text-white rounded bg-blue-500 hover:bg-blue-600 px-3 py-1.5 hover:cursor-pointer">Edit</button>
+                                            
+                                            <form method="POST" action="{{ URL::route('destroyCategory', ['category' => $category]); }}">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button class="text-white rounded bg-red-500 hover:bg-red-600 px-3 py-2 hover:cursor-pointer disabled:bg-red-300 disabled:cursor-auto" {{ $category->doors_count > 0 ? 'disabled' : '' }}>
+                                                    <i
+                                                        class="fa-solid fa-trash-can"
+                                                    ></i>
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>
@@ -32,6 +42,9 @@
                     </tbody>                
                 @endforeach
             </table>
+            <div class="flex flex-row justify-center">
+                <button onclick="window.location='{{ URL::route('createClassification'); }}'" class="text-white rounded bg-primary hover:bg-secondary px-3 py-1.5 hover:cursor-pointer">Add Classification</button>
+            </div>
         </div>
     </x-padding-wrapper>
 </x-layout>
