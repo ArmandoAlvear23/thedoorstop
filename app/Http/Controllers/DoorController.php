@@ -27,8 +27,6 @@ class DoorController extends Controller
     // Store door data
     public function store(Request $request) {
 
-       // dd($request);
-
         $formFields = $request->validate([
             'name' => ['required', Rule::unique('doors', 'name')],
             'sku' => 'required',
@@ -46,17 +44,38 @@ class DoorController extends Controller
         return redirect('/')->with('message', 'Door created successfully!');
     }
 
+    // Get edit door view
+    public function edit(Door $door) {
+        $classifications = Classification::query()->with(['categories'])->orderBy('id','ASC')->get();
+        return view('doors.edit', ['door' => $door])->with('classifications', $classifications);
+    }
+
+    // Update door
+    public function update(Request $request, Door $door) {
+
+        $formFields = $request->validate([
+            'name' => 'required',
+            'sku' => 'required'
+        ]);
+
+        if($request->hasFile('photo')) {
+            $formFields['img_location'] = $request->file('photo')->store('doors', 'public');
+        }
+
+        $door->update($formFields);
+
+        $this->addCategories($request, $door);
+
+        return back();
+        //return redirect('/')->with('message', 'Door created successfully!');
+    }
+
     public function addCategories(Request $request, Door $door) {
        
         // Store Door's Categories
         if($request->categories) {
             
-            $categoryArr = explode(',', $request->categories);
-
-            foreach($categoryArr as $category) {
-                
-                $door->categories()->syncWithoutDetaching($category);
-            }
+            $door->categories()->sync($request->categories);
         }
     }
 
