@@ -3,7 +3,7 @@
         <div class="bg-gray-50 border border-gray-200 border-y-sky-300 border-y-4 rounded p-10 pb-14 my-8 mx-0 md:mx-8 shadow-xl overflow-auto">
             <header class="text-center">
                 <h2 class="text-2xl font-medium uppercase mb-4">
-                    Add Door
+                    Edit Door
                 </h2>
             </header>
             <form method="POST" action="{{ route('updateDoor', $door->id) }}" enctype="multipart/form-data">
@@ -44,19 +44,33 @@
                     @enderror
                 </div>
                 <div class="mb-6">
+                  <div x-data="imgPreview" x-cloak>
                     <label for="photo" class="inline-block text-lg mb-2">
                         Photo
                     </label>
                     <input
                         type="file"
-                        class="border border-gray-200 rounded p-2 w-full"
+                        id="photo"
+                        class="border border-gray-200 rounded p-2 w-full mb-3"
                         name="photo"
+                        x-ref="myFile"
+                        accept="image/*"
+                        @change="previewFile"
                     />
                     <img
-                      class="w-48 mt-3"
+                      id="doorPhotoPreview"
+                      class="w-48"
                       src="{{$door->img_location ? asset($door->img_location) : '' }}"
-                      alt="company logo"
+                      alt="door photo"
                     />
+                    <template x-if="imgsrc">
+                      <img 
+                        :src="imgsrc" 
+                        class="imgPreview w-48"
+                        alt="door photo"
+                      />
+                    </template>
+                  </div>
                     @error('photo')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
@@ -369,8 +383,27 @@
             }
           }));
         });
+        document.addEventListener('alpine:init', () => {
+          Alpine.data('imgPreview', () => ({
+            imgsrc:null,
+            previewFile() {
+                const oldPhoto = document.getElementById('doorPhotoPreview');
+                if(oldPhoto)
+                {
+                  oldPhoto.remove();
+                }
+                let file = this.$refs.myFile.files[0];
+                if(!file || file.type.indexOf('image/') === -1) return;
+                this.imgsrc = null;
+                let reader = new FileReader();
+                reader.onload = e => {
+                    this.imgsrc = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+          }))
+        });
         </script>
-
     @endpush
 </x-layout>
 

@@ -7,6 +7,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Classification;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DoorController extends Controller
 {
@@ -59,11 +61,18 @@ class DoorController extends Controller
         ]);
 
         if($request->hasFile('photo')) {
+            // Delete old photo file
+            if(File::exists(public_path('storage/'.$door->img_location))){
+                File::delete(public_path('storage/'.$door->img_location));
+            }
+            // Store new photo file and get location of new file
             $formFields['img_location'] = $request->file('photo')->store('doors', 'public');
         }
 
+        // Update door with new data
         $door->update($formFields);
 
+        // Update door categories
         $this->addCategories($request, $door);
 
         return back();
@@ -73,10 +82,7 @@ class DoorController extends Controller
     public function addCategories(Request $request, Door $door) {
        
         // Store Door's Categories
-        if($request->categories) {
-            
-            $door->categories()->sync($request->categories);
-        }
+        $door->categories()->sync($request->categories);
     }
 
 }

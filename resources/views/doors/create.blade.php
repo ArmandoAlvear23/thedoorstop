@@ -21,12 +21,10 @@
                         placeholder="Door Name"
                         value="{{ old('name') }}"
                     />
-    
                     @error('name')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
                 </div>
-
                 <div class="mb-6">
                     <label
                         for="sku"
@@ -40,171 +38,353 @@
                         placeholder="Door SKU#"
                         value="{{ old('sku') }}"
                     />
-    
                     @error('sku')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
                 </div>
-
                 <div class="mb-6">
+                  <div x-data="imgPreview" x-cloak>
                     <label for="photo" class="inline-block text-lg mb-2">
                         Photo
                     </label>
                     <input
-                        type="file"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="photo"
+                      type="file"
+                      id="photo"
+                      class="border border-gray-200 rounded p-2 w-full mb-3"
+                      name="photo"
+                      x-ref="myFile"
+                      accept="image/*"
+                      @change="previewFile"
                     />
-    
+                    <template x-if="imgsrc">
+                      <img 
+                        :src="imgsrc" 
+                        class="imgPreview w-48"
+                        alt="door photo"
+                      />
+                    </template>
                     @error('photo')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
+                  </div>
                 </div>
-                
                 <label for="categories" class="inline-block text-lg mb-2"
-                        >Categories</label
+                  >Categories</label
                 >
-                <select x-cloak id="selectCategories">
+                <div class="w-full mb-8 h-64 ">
+                  <select id="categories" name="categories[]" multiple x-data="multiselect">
                     @foreach($classifications as $classification)
+                      <optgroup label="{{ $classification->name }}">
                         @foreach ($classification->categories as $category)
-                            <option value="{{ $category->id }}">{{ ucfirst($classification->name)  }}: {{  ucfirst($category->name) }}</option>
+                        <option value="{{ $category->id }}" {{ (is_array(old('categories')) && in_array($category->id, old('categories'))) ? 'selected' : '' }}>{{  ucfirst($category->name) }}</option>
                         @endforeach
+                      </optgroup>
                     @endforeach
-                </select>
+                  </select>
+                </div>
                 @error('categories')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
-                  
-                <div x-data="dropdown()" x-init="loadOptions()" class="w-full flex flex-col items-center h-64 mb-6">
-                    <input name="categories" type="hidden" x-bind:value="selectedValues()">
-                    <div class="inline-block relative w-full">
-                      <div class="flex flex-col items-center relative">
-                        <div x-on:click="open" class="w-full">
-                          <div class="my-2 p-1 flex border border-gray-200 bg-white rounded">
-                            <div class="flex flex-auto flex-wrap">
-                              <template x-for="(option,index) in selected" :key="options[option].value">
-                                <div class="flex justify-center items-center m-1 font-medium py-1 px-1 bg-white rounded bg-gray-100 border">
-                                  <div class="text-xs font-normal leading-none max-w-full flex-initial x-model=" options[option] x-text="options[option].text"></div>
-                                  <div class="flex flex-auto flex-row-reverse">
-                                    <div x-on:click.stop="remove(index,option)">
-                                      <svg class="fill-current h-4 w-4 " role="button" viewBox="0 0 20 20">
-                                        <path d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0
-                                                             c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183
-                                                             l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15
-                                                             C14.817,13.62,14.817,14.38,14.348,14.849z" />
-                                      </svg>
-                  
-                                    </div>
-                                  </div>
-                                </div>
-                              </template>
-                              <div x-show="selected.length == 0" class="flex-1">
-                                <input placeholder="Select Categories" class="bg-transparent p-1 px-2 appearance-none outline-none h-full w-full text-gray-800" x-bind:value="selectedValues()">
-                              </div>
-                            </div>
-                            <div class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200 svelte-1l8159u">
-                  
-                              <button type="button" x-show="isOpen() === true" x-on:click="open" class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
-                                <svg version="1.1" class="fill-current h-4 w-4" viewBox="0 0 20 20">
-                                  <path d="M17.418,6.109c0.272-0.268,0.709-0.268,0.979,0s0.271,0.701,0,0.969l-7.908,7.83
-                      c-0.27,0.268-0.707,0.268-0.979,0l-7.908-7.83c-0.27-0.268-0.27-0.701,0-0.969c0.271-0.268,0.709-0.268,0.979,0L10,13.25
-                      L17.418,6.109z" />
-                                </svg>
-                  
-                              </button>
-                              <button type="button" x-show="isOpen() === false" @click="close" class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
-                                <svg class="fill-current h-4 w-4" viewBox="0 0 20 20">
-                                  <path d="M2.582,13.891c-0.272,0.268-0.709,0.268-0.979,0s-0.271-0.701,0-0.969l7.908-7.83
-                      c0.27-0.268,0.707-0.268,0.979,0l7.908,7.83c0.27,0.268,0.27,0.701,0,0.969c-0.271,0.268-0.709,0.268-0.978,0L10,6.75L2.582,13.891z
-                      " />
-                                </svg>
-                  
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="w-full px-4">
-                          <div x-show.transition.origin.top="isOpen()" class="absolute shadow top-100 bg-white z-40 w-full left-0 rounded max-h-select" x-on:click.away="close">
-                            <div class="flex flex-col w-full overflow-y-auto h-64">
-                              <template x-for="(option,index) in options" :key="option" class="overflow-auto">
-                                <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
-                                  <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative">
-                                    <div class="w-full items-center flex justify-between">
-                                      <div class="mx-2 leading-6" x-model="option" x-text="option.text"></div>
-                                      <div x-show="option.selected">
-                                        <svg class="svg-icon" viewBox="0 0 20 20">
-                                          <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087
-                                              C0.919,9.266,1.404,9.269,1.702,9.57l5.495,5.536L18.221,4.083c0.301-0.301,0.787-0.301,1.087,0c0.301,0.3,0.301,0.787,0,1.087
-                                              L7.741,16.738C7.596,16.882,7.401,16.963,7.197,16.963z"></path>
-                                        </svg>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </template>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
+                <div class="mb-6 flex flex-col justify-center">
                 <div class="mb-6 flex flex-col justify-center">
                     <button
                         class="bg-primary text-white rounded py-2 px-4 hover:bg-secondary"
                     >
-                        Add Door
+                      Add Door
                     </button>
-    
                     <a href="/internal/door/categories" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
                 </div>
             </form>
         </div>
-        
     </x-padding-wrapper>
     @push('scripts')
         <script>
-            function dropdown() {
-                return {
-                    options: [],
-                    selected: [],
-                    show: false,
-                    open() { this.show = true },
-                    close() { this.show = false },
-                    isOpen() { return this.show === true },
-                    select(index, event) {
+          document.addEventListener("alpine:init", () => {
+          Alpine.data("multiselect", () => ({
+            style: {
+              wrapper: "w-full relative",
+              select:
+                "border w-full border-gray-300 rounded-lg py-2 px-2 text-sm flex gap-2 items-center cursor-pointer bg-white",
+              menuWrapper:
+                "w-full rounded-lg py-1.5 text-sm mt-1 shadow-lg absolute bg-white z-10",
+              menu: "max-h-52 overflow-y-auto",
+              textList: "overflow-x-hidden text-ellipsis grow whitespace-nowrap",
+              trigger: "px-2 py-2 rounded bg-neutral-100",
+              badge: "py-1.5 px-3 rounded-full bg-neutral-100",
+              search:
+                "px-3 py-2 w-full border-0 border-b-2 border-neutral-100 pb-3 outline-0 mb-1",
+              optionGroupTitle:
+                "px-3 py-2 text-neutral-400 uppercase font-bold text-xs sticky top-0 bg-white",
+              clearSearchBtn: "absolute p-3 right-0 top-1 text-neutral-600",
+              label: "hover:bg-neutral-50 cursor-pointer flex py-2 px-3"
+            },
 
-                        if (!this.options[index].selected) {
+            icons: {
+              times:
+                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><g xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M6 18L18 6M18 18L6 6"/></g></svg>',
+              arrowDown:
+                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"><path xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-width="2" d="M5 10l7 7 7-7"/></svg>'
+            },
 
-                            this.options[index].selected = true;
-                            this.options[index].element = event.target;
-                            this.selected.push(index);
+            init() {
+              const style = this.style;
 
-                        } else {
-                            this.selected.splice(this.selected.lastIndexOf(index), 1);
-                            this.options[index].selected = false
-                        }
-                    },
-                    remove(index, option) {
-                        this.options[option].selected = false;
-                        this.selected.splice(index, 1);
-                    },
-                    loadOptions() {
-                        const options = document.getElementById('selectCategories').options;
-                        for (let i = 0; i < options.length; i++) {
-                            this.options.push({
-                                value: options[i].value,
-                                text: options[i].innerText,
-                                selected: options[i].getAttribute('selected') != null ? options[i].getAttribute('selected') : false
-                            });
-                        }
-                    },
-                    selectedValues(){
-                        return this.selected.map((option)=>{
-                            return this.options[option].value;
-                        })
-                    }
+              const originalSelect = this.$el;
+              originalSelect.classList.add("hidden");
+
+              const wrapper = document.createElement("div");
+              wrapper.className = style.wrapper;
+              wrapper.setAttribute("x-data", "newSelect");
+
+              const newSelect = document.createElement("div");
+              newSelect.className = style.select;
+              newSelect.setAttribute("x-bind", "selectTrigger");
+
+              const textList = document.createElement("span");
+              textList.className = style.textList;
+
+              const triggerBtn = document.createElement("anchor");
+              triggerBtn.className = style.trigger;
+              triggerBtn.innerHTML = this.icons.arrowDown;
+
+              const countBadge = document.createElement("span");
+              countBadge.className = style.badge;
+              countBadge.setAttribute("x-bind", "countBadge");
+
+              newSelect.append(textList);
+              newSelect.append(countBadge);
+              newSelect.append(triggerBtn);
+
+              const menuWrapper = document.createElement("div");
+              menuWrapper.className = style.menuWrapper;
+              menuWrapper.setAttribute("x-bind", "selectMenu");
+
+              const menu = document.createElement("div");
+              menu.className = style.menu;
+
+              const search = document.createElement("input");
+              search.className = style.search;
+              search.setAttribute("x-bind", "search");
+              search.setAttribute("placeholder", "Filter Door Categories");
+
+              const clearSearchBtn = document.createElement("anchor");
+              clearSearchBtn.className = style.clearSearchBtn;
+              clearSearchBtn.setAttribute("x-bind", "clearSearchBtn");
+              clearSearchBtn.innerHTML = this.icons.times;
+
+              menuWrapper.append(search);
+              menuWrapper.append(menu);
+              menuWrapper.append(clearSearchBtn);
+
+              originalSelect.parentNode.insertBefore(
+                wrapper,
+                originalSelect.nextSibling
+              );
+
+              const itemGroups = originalSelect.querySelectorAll("optgroup");
+
+              if (itemGroups.length > 0) {
+                itemGroups.forEach((itemGroup) => processItems(itemGroup));
+              } else {
+                processItems(originalSelect);
+              }
+
+              function processItems(parent) {
+                const items = parent.querySelectorAll("option");
+                const subMenu = document.createElement("ul");
+                const groupName = parent.getAttribute("label") || null;
+
+                if (groupName) {
+                  const groupTitle = document.createElement("h5");
+                  groupTitle.className = style.optionGroupTitle;
+                  groupTitle.innerText = groupName;
+                  groupTitle.setAttribute("x-bind", "groupTitle");
+                  menu.appendChild(groupTitle);
                 }
+
+                items.forEach((item) => {
+                  const li = document.createElement("li");
+                  li.setAttribute("x-bind", "listItem");
+
+                  const checkBox = document.createElement("input");
+                  checkBox.classList.add("mr-3", "mt-1");
+                  checkBox.type = "checkbox";
+                  checkBox.value = item.value;
+                  checkBox.id = originalSelect.name + "_" + item.value;
+
+                  const label = document.createElement("label");
+                  label.className = style.label;
+                  label.setAttribute("for", checkBox.id);
+                  label.innerText = item.innerText;
+
+                  checkBox.setAttribute("x-bind", "checkBox");
+
+                  if (item.hasAttribute("selected")) {
+                    checkBox.checked = true;
+                  }
+                  label.prepend(checkBox);
+                  li.append(label);
+                  subMenu.appendChild(li);
+                });
+                menu.appendChild(subMenu);
+              }
+
+              wrapper.appendChild(newSelect);
+              wrapper.appendChild(menuWrapper);
+
+              Alpine.data("newSelect", () => ({
+                open: false,
+                showCountBadge: false,
+                items: [],
+                selectedItems: [],
+                filterBy: "",
+                init() {
+                  this.regenerateTextItems();
+                },
+
+                regenerateTextItems() {
+                  this.selectedItems = [];
+                  this.items.forEach((item) => {
+                    const checkbox = item.querySelector("input[type=checkbox]");
+                    const text = item.querySelector("label").innerText;
+                    if (checkbox.checked) {
+                      this.selectedItems.push(text);
+                    }
+                  });
+
+                  if (this.selectedItems.length > 1) {
+                    this.showCountBadge = true;
+                  } else {
+                    this.showCountBadge = false;
+                  }
+
+                  if (this.selectedItems.length === 0) {
+                    textList.innerHTML = '<span class="text-neutral-400">Door Categories</span>';
+                  } else {
+                    textList.innerText = this.selectedItems.join(", ");
+                  }
+                },
+
+                selectTrigger: {
+                  ["@click"]() {
+                    this.open = !this.open;
+
+                    if (this.open) {
+                      this.$nextTick(() =>
+                        this.$root.querySelector("input[x-bind=search]").focus()
+                      );
+                    }
+                  }
+                },
+                selectMenu: {
+                  ["x-show"]() {
+                    return this.open;
+                  },
+                  ["x-transition"]() {},
+                  ["@keydown.escape.window"]() {
+                    this.open = false;
+                  },
+                  ["@click.away"]() {
+                    this.open = false;
+                  },
+                  ["x-init"]() {
+                    this.items = this.$el.querySelectorAll("li");
+                    this.regenerateTextItems();
+                  }
+                },
+                checkBox: {
+                  ["@change"]() {
+                    const checkBox = this.$el;
+
+                    if (checkBox.checked) {
+                      originalSelect
+                        .querySelector("option[value='" + checkBox.value + "']")
+                        .setAttribute("selected", true);
+                    } else {
+                      originalSelect
+                        .querySelector("option[value='" + checkBox.value + "']")
+                        .removeAttribute("selected");
+                    }
+                    this.regenerateTextItems();
+                  }
+                },
+                countBadge: {
+                  ["x-show"]() {
+                    return this.showCountBadge;
+                  },
+                  ["x-text"]() {
+                    return this.selectedItems.length;
+                  }
+                },
+                search: {
+                  ["@keydown.escape.stop"]() {
+                    this.filterBy = "";
+                    this.$el.blur();
+                  },
+                  ["@keyup"]() {
+                    this.filterBy = this.$el.value;
+                  },
+                  ["x-model"]() {
+                    return this.filterBy;
+                  }
+                },
+                clearSearchBtn: {
+                  ["@click"]() {
+                    this.filterBy = "";
+                  },
+                  ["x-show"]() {
+                    return this.filterBy.length > 0;
+                  }
+                },
+                listItem: {
+                  ["x-show"]() {
+                    return (
+                      this.filterBy === "" ||
+                      this.$el.innerText
+                        .toLowerCase()
+                        .startsWith(this.filterBy.toLowerCase())
+                    );
+                  }
+                },
+                groupTitle: {
+                  ["x-show"]() {
+                    if (this.filterBy === "") return true;
+
+                    let atLeastOneItemIsShown = false;
+
+                    this.$el.nextElementSibling
+                      .querySelectorAll("li")
+                      .forEach((item) => {
+                        console.log(this.filterBy);
+                        if (
+                          item.innerText
+                            .toLowerCase()
+                            .startsWith(this.filterBy.toLowerCase())
+                        )
+                          atLeastOneItemIsShown = true;
+                      });
+                    return atLeastOneItemIsShown;
+                  }
+                }
+              }));
             }
+          }));
+        });
+        document.addEventListener('alpine:init', () => {
+          Alpine.data('imgPreview', () => ({
+            imgsrc:null,
+            previewFile() {
+                let file = this.$refs.myFile.files[0];
+                if(!file || file.type.indexOf('image/') === -1) return;
+                this.imgsrc = null;
+                let reader = new FileReader();
+                reader.onload = e => {
+                    this.imgsrc = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+          }))
+        });
         </script>
     @endpush
 </x-layout>
