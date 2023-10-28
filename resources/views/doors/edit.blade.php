@@ -1,8 +1,8 @@
 <x-layout>
     <x-padding-wrapper>
-        <div class="bg-gray-50 border border-gray-200 border-y-sky-300 border-y-4 rounded p-10 pb-14 my-8 mx-0 md:mx-8 shadow-xl overflow-auto">
+        <div class="bg-gray-50 border border-gray-200 border-y-sky-300 border-y-4 rounded p-10 pb-14 my-8 mx-0 md:mx-8 lg:mx-20 shadow-xl overflow-auto">
             <header class="text-center">
-                <h2 class="text-2xl font-medium uppercase mb-4">
+                <h2 class="text-2xl font-medium mb-4">
                     Edit Door
                 </h2>
             </header>
@@ -104,7 +104,7 @@
                   >
                       Update Door
                   </button>
-                  <a href="/internal/door/categories" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
+                  <a href="{{ URL::previous() }}" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
               </div>
             </form>
         </div>
