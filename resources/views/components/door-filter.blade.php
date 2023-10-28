@@ -1,6 +1,6 @@
 @props(['classifications', 'activeFilters'])
 <form action="/doors">
-    <div class="w-full mb-8 flex gap-2">
+    <div class="w-full mb-1 flex gap-2">
         <select id="categories" name="category[]" multiple x-data="multiselect">
         @foreach($classifications as $classification)
             <optgroup label="{{ $classification->name }}">
