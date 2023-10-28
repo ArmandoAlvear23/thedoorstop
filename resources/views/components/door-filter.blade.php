@@ -12,7 +12,7 @@
         </select>
         <button
             type="submit"
-            class="h-13 w-20 text-white rounded-lg bg-blue-500 hover:bg-blue-600"
+            class="h-13 w-20 rounded-lg text-gray-500 border-2 border-gray-500 hover:bg-gray-500 hover:text-white transition ease-out duration-300"
         >
             Filter
         </button>
