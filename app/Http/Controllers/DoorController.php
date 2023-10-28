@@ -14,7 +14,6 @@ class DoorController extends Controller
     // Get and show all doors
     public function index() {
         return view('doors.index', [
-            'heading' => 'Latest Doors',
             'doors' => Door::latest()->filter(request(['category', 'search']))->paginate(5),
             'classifications' => Classification::query()->with(['categories', 'categories' => fn($q) => $q->withCount('doors')->orderBy('doors_count', 'DESC')])->orderBy('id','ASC')->get(),
             'activeFilters' => request(['category'])
