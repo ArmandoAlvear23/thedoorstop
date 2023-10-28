@@ -2,7 +2,7 @@
     <x-padding-wrapper>
         <div class="bg-gray-50 border border-gray-200 border-y-sky-300 border-y-4 rounded p-10 pb-14 my-8 mx-0 md:mx-8 shadow-xl overflow-auto">
             <header class="text-center">
-                <h2 class="text-2xl font-medium uppercase mb-4">
+                <h2 class="text-2xl font-medium text-gray-700 uppercase mb-4">
                     Add Category
                 </h2>
             </header>
@@ -11,7 +11,7 @@
                 <div class="mb-6">
                     <label
                         for="name"
-                        class="inline-block text-lg mb-2"
+                        class="inline-block text-lg text-gray-800 mb-2"
                         >Category Name</label
                     >
                     <input
@@ -27,7 +27,7 @@
                 </div>
     
                 <div class="mb-6">
-                    <label for="title" class="inline-block text-lg mb-2"
+                    <label for="title" class="inline-block text-lg text-gray-800 mb-2"
                         >Classification</label
                     >
                     <select name="classification_id" id="classification_id" class="border border-gray-200 rounded p-2 w-full">
@@ -42,7 +42,7 @@
 
                 <div class="mb-6 flex flex-col justify-center">
                     <button
-                        class="bg-primary text-white rounded py-2 px-4 hover:bg-secondary"
+                        class="bg-primary text-white rounded py-2 px-4 hover:bg-primary2 transition ease-out duration-200"
                     >
                         Create Category
                     </button>
