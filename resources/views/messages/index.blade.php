@@ -12,8 +12,7 @@
                         <thead>
                             <tr>
                                 <th class="bg-blue-200 border text-left px-6 py-4">Name</th>
-                                <th class="bg-blue-200 border text-left px-6 py-4">Email</th>
-                                <th class="bg-blue-200 border text-left px-6 py-4">Phone</th>
+                                <th class="bg-blue-200 border text-left px-6 py-4">Contact</th>
                                 <th class="bg-blue-200 border text-left px-6 py-4">Message</th>
                                 <th class="bg-blue-200 border text-left px-6 py-4">View</th>
                             </tr>
@@ -22,8 +21,12 @@
                             @foreach($messages as $message)
                                 <tr>
                                     <td class="border px-6 py-4">{{ $message->name }}</td>
-                                    <td class="border px-6 py-4">{{ $message->email }}</td>
-                                    <td class="border px-6 py-4">{{ $message->phone }}</td>
+                                    <td class="border px-6 py-4">
+                                        <div class="flex-cols text-sm text-gray-700">
+                                            <span>Email: <a href="mailto:{{ $message->email }}" class="text-blue-600">{{ $message->email }}</a></span> 
+                                            <span>Phone: <a href="tel:{{ $message->phone }}">{{ $message->phone }}</a></span>
+                                        </div>
+                                    </td>
                                     <td class="border px-6 py-4">{{ $message->message }}</td>
                                     <td class="border px-6 py-4"><a href="/internal/messages/{{ $message->id }}"class="">View</a></td>
                                 </tr>
