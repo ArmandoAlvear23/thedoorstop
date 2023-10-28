@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoorController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClassificationController;
@@ -107,3 +108,22 @@ Route::post('/internal/messages', [MessageController::class, 'store'])->name('st
 
 // Get Show Message View
 Route::get('/internal/messages/{listing}', [MessageController::class, 'show'])->name('showMessage');
+
+////////////////////////////////
+// User Routes
+////////////////////////////////
+
+// Show Register/Create Form
+Route::get('/internal/register', [UserController::class, 'create'])->middleware('guest');
+
+// Create New User
+Route::post('/users', [UserController::class, 'store'])->name('registerUser');
+
+// Show Login Form
+Route::get('/internal/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+
+// Login User
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// Log User Out
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
