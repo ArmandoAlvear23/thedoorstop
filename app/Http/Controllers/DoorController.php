@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\Classification;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class DoorController extends Controller
 {
@@ -16,7 +15,9 @@ class DoorController extends Controller
     public function index() {
         return view('doors.index', [
             'heading' => 'Latest Doors',
-            'doors' => Door::latest()->filter(request(['category']))->paginate(8)
+            'doors' => Door::latest()->filter(request(['category', 'search']))->paginate(5),
+            'classifications' => Classification::query()->with(['categories', 'categories' => fn($q) => $q->withCount('doors')->orderBy('doors_count', 'DESC')])->orderBy('id','ASC')->get(),
+            'activeFilters' => request(['category'])
         ]);
     }
 
