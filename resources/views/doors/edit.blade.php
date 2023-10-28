@@ -2,7 +2,7 @@
     <x-padding-wrapper>
         <div class="bg-gray-50 border border-gray-200 border-y-sky-300 border-y-4 rounded p-10 pb-14 my-8 mx-0 md:mx-8 lg:mx-20 shadow-xl overflow-auto">
             <header class="text-center">
-                <h2 class="text-2xl font-medium mb-4">
+                <h2 class="text-2xl font-medium uppercase text-gray-700 mb-4">
                     Edit Door
                 </h2>
             </header>
@@ -12,7 +12,7 @@
                 <div class="mb-6">
                     <label
                         for="name"
-                        class="inline-block text-lg mb-2"
+                        class="inline-block text-lg text-gray-800 mb-2"
                         >Name</label
                     >
                     <input
@@ -29,7 +29,7 @@
                 <div class="mb-6">
                     <label
                         for="sku"
-                        class="inline-block text-lg mb-2"
+                        class="inline-block text-lg text-gray-700 mb-2"
                         >SKU#</label
                     >
                     <input
@@ -45,7 +45,7 @@
                 </div>
                 <div class="mb-6">
                   <div x-data="imgPreview" x-cloak>
-                    <label for="photo" class="inline-block text-lg mb-2">
+                    <label for="photo" class="inline-block text-lg text-gray-700 mb-2">
                         Photo
                     </label>
                     <input
@@ -75,7 +75,7 @@
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
                 </div>
-                <label for="categories" class="inline-block text-lg mb-2"
+                <label for="categories" class="inline-block text-lg text-gray-700 mb-2"
                   >Categories</label
                 >
                 @php
@@ -100,7 +100,7 @@
                 @enderror
                 <div class="mb-6 flex flex-col justify-center">
                   <button
-                      class="bg-primary text-white rounded py-2 px-4 hover:bg-secondary"
+                      class="bg-primary text-white rounded py-2 px-4 hover:bg-primary2 transition ease-out duration-200"
                   >
                       Update Door
                   </button>
