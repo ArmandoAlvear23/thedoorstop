@@ -39,7 +39,9 @@
                 <li class="{{ Request::is('contact') ? 'border-secondary' : 'border-transparent' }} border-b-2 hover:border-secondary transition ease-out duration-500"><a href="/contact" class="text-white uppercase">Contact</a></li>
             </ul>
         </nav>
-        @include('components.admin-nav')
+        @auth
+            @include('components.admin-nav')
+        @endauth
         
         <!-- Mobile Nav dropdown -->
         <nav class="" 
