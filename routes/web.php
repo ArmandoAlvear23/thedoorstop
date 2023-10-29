@@ -120,10 +120,10 @@ Route::get('/internal/register', [UserController::class, 'create'])->middleware(
 Route::post('/users', [UserController::class, 'store'])->name('registerUser');
 
 // Show Login Form
-Route::get('/internal/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::get('/internal/login', [UserController::class, 'login'])->name('loginUser')->middleware('guest');
 
 // Login User
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+Route::post('/users/authenticate', [UserController::class, 'authenticate'])->name('authenticateUser');
 
 // Log User Out
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::post('/logout', [UserController::class, 'logout'])->name('logoutUser')->middleware('auth');
