@@ -17,9 +17,11 @@
                     <x-door-tags :tagsArr="$door->categories" :activeFilters="$activeFilters" />
                 @endunless
             </div>
-            <div class="mt-6">
-                <a href="{{ route('editDoor', ['door' => $door]) }}" class="rounded-md border-2 border-gray-500 text-gray-500 bg-transparent hover:bg-gray-500 hover:text-white transition ease-out duration-200 px-5 py-1.5">Edit Door</a>
-            </div>
+            @auth
+                <div class="mt-6">
+                    <a href="{{ route('editDoor', ['door' => $door]) }}" class="rounded-md border-2 border-gray-500 text-gray-500 bg-transparent hover:bg-gray-500 hover:text-white transition ease-out duration-200 px-5 py-1.5">Edit Door</a>
+                </div>
+            @endauth
         </div>
     </div>
 </div>
