@@ -34,22 +34,22 @@ Route::get('/contact', function() {
 Route::get('/doors', [DoorController::class, 'index']);
 
 // Get Create Door View
-Route::get('/internal/doors/create', [DoorController::class, 'create'])->name('createDoor');
+Route::get('/internal/doors/create', [DoorController::class, 'create'])->name('createDoor')->middleware('auth');
 
 // Store New Door
-Route::post('/internal/doors', [DoorController::class, 'store'])->name('storeDoor');
+Route::post('/internal/doors', [DoorController::class, 'store'])->name('storeDoor')->middleware('auth');
 
 // Get Edit Door View
-Route::get('/internal/doors/{door}/edit', [DoorController::class, 'edit'])->name('editDoor');
+Route::get('/internal/doors/{door}/edit', [DoorController::class, 'edit'])->name('editDoor')->middleware('auth');
 
 // Update Door
-Route::put('/internal/doors/{door}', [DoorController::class, 'update'])->name('updateDoor');
+Route::put('/internal/doors/{door}', [DoorController::class, 'update'])->name('updateDoor')->middleware('auth');
 
 // Delete Door
-Route::delete('/internal/doors/{door}', [DoorController::class, 'destroy'])->name('destroyDoor');
+Route::delete('/internal/doors/{door}', [DoorController::class, 'destroy'])->name('destroyDoor')->middleware('auth');
 
 // Get Manage Door View
-Route::get('/internal/doors/{door}/manage', [DoorController::class, 'manage'])->name('manageDoor');
+Route::get('/internal/doors/{door}/manage', [DoorController::class, 'manage'])->name('manageDoor')->middleware('auth');
 
 // Get Show Door View
 Route::get('/doors/{door}', [DoorController::class, 'show'])->name('showDoor');
@@ -59,19 +59,19 @@ Route::get('/doors/{door}', [DoorController::class, 'show'])->name('showDoor');
 ////////////////////////////////
 
 // Get Create Classification View
-Route::get('/internal/door/classifications/create/', [ClassificationController::class, 'create'])->name('createClassification');
+Route::get('/internal/door/classifications/create/', [ClassificationController::class, 'create'])->name('createClassification')->middleware('auth');
 
 // Store New Classification
-Route::post('/internal/door/classifications', [ClassificationController::class, 'store'])->name('storeClassification');
+Route::post('/internal/door/classifications', [ClassificationController::class, 'store'])->name('storeClassification')->middleware('auth');
 
 // Get Edit Classification View
-Route::get('/internal/door/classifications/{classification}/edit', [ClassificationController::class, 'edit'])->name('editClassification');
+Route::get('/internal/door/classifications/{classification}/edit', [ClassificationController::class, 'edit'])->name('editClassification')->middleware('auth');
 
 // Update Classification
-Route::put('/internal/door/classifications/{classification}', [ClassificationController::class, 'update'])->name('updateClassification');
+Route::put('/internal/door/classifications/{classification}', [ClassificationController::class, 'update'])->name('updateClassification')->middleware('auth');
 
 // Delete Classification
-Route::delete('/internal/door/classifications/{classification}', [ClassificationController::class, 'destroy'])->name('destroyClassification');
+Route::delete('/internal/door/classifications/{classification}', [ClassificationController::class, 'destroy'])->name('destroyClassification')->middleware('auth');
 
 
 ////////////////////////////////
@@ -79,35 +79,35 @@ Route::delete('/internal/door/classifications/{classification}', [Classification
 ////////////////////////////////
 
 // Get All Categories View
-Route::get('/internal/door/categories', [CategoryController::class, 'index']);
+Route::get('/internal/door/categories', [CategoryController::class, 'index'])->middleware('auth');
 
 // Get Create Category View
-Route::get('/internal/door/categories/create/{classification}', [CategoryController::class, 'create'])->name('createCategory');
+Route::get('/internal/door/categories/create/{classification}', [CategoryController::class, 'create'])->name('createCategory')->middleware('auth');
 
 // Store New Category
-Route::post('/internal/door/categories', [CategoryController::class, 'store'])->name('storeCategory');
+Route::post('/internal/door/categories', [CategoryController::class, 'store'])->name('storeCategory')->middleware('auth');
 
 // Get Edit Category View
-Route::get('/internal/door/categories/{category}/edit', [CategoryController::class, 'edit'])->name('editCategory');
+Route::get('/internal/door/categories/{category}/edit', [CategoryController::class, 'edit'])->name('editCategory')->middleware('auth');
 
 // Update Category
-Route::put('/internal/door/categories/{category}', [CategoryController::class, 'update'])->name('updateCategory');
+Route::put('/internal/door/categories/{category}', [CategoryController::class, 'update'])->name('updateCategory')->middleware('auth');
 
 // Delete Category
-Route::delete('/internal/door/categories/{category}', [CategoryController::class, 'destroy'])->name('destroyCategory');
+Route::delete('/internal/door/categories/{category}', [CategoryController::class, 'destroy'])->name('destroyCategory')->middleware('auth');
 
 ////////////////////////////////
 // Message Routes
 ////////////////////////////////
 
 // Get All Messages View
-Route::get('/internal/messages', [MessageController::class, 'index']);
+Route::get('/internal/messages', [MessageController::class, 'index'])->middleware('auth');
 
 // Store New Message
-Route::post('/internal/messages', [MessageController::class, 'store'])->name('storeMessage');
+Route::post('/internal/messages', [MessageController::class, 'store'])->name('storeMessage')->middleware('auth');
 
 // Get Show Message View
-Route::get('/internal/messages/{listing}', [MessageController::class, 'show'])->name('showMessage');
+Route::get('/internal/messages/{listing}', [MessageController::class, 'show'])->name('showMessage')->middleware('auth');
 
 ////////////////////////////////
 // User Routes
