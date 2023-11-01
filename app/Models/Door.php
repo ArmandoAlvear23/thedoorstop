@@ -38,4 +38,8 @@ class Door extends Model
     public function categories(): BelongsToMany {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+
+    public function promotions(): BelongsToMany {
+        return $this->belongsToMany(Promotion::class)->withTimestamps();
+    }
 }
