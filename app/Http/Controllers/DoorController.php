@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Door;
-use App\Models\Category;
 use App\Models\Promotion;
 use Illuminate\Http\Request;
 use App\Models\Classification;
@@ -79,6 +78,9 @@ class DoorController extends Controller
         // Update door categories
         $this->addCategories($request, $door);
 
+        // Update door promotions
+        $this->addPromotions($request, $door);
+
         return back();
         //return redirect('/')->with('message', 'Door created successfully!');
     }
@@ -87,6 +89,12 @@ class DoorController extends Controller
        
         // Store Door's Categories
         $door->categories()->sync($request->categories);
+    }
+
+    public function addPromotions(Request $request, Door $door) {
+       
+        // Store Door's Promotions
+        $door->promotions()->sync($request->promotions);
     }
 
 }
