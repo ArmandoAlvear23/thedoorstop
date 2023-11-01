@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Door;
 use App\Models\Category;
+use App\Models\Promotion;
 use Illuminate\Http\Request;
 use App\Models\Classification;
 use Illuminate\Validation\Rule;
@@ -49,7 +50,10 @@ class DoorController extends Controller
     // Get edit door view
     public function edit(Door $door) {
         $classifications = Classification::query()->with(['categories'])->orderBy('id','ASC')->get();
-        return view('doors.edit', ['door' => $door])->with('classifications', $classifications);
+        $dbPromotionList = Promotion::query()->get();
+        return view('doors.edit', ['door' => $door])
+            ->with('classifications', $classifications)
+            ->with('dbPromotionList', $dbPromotionList);
     }
 
     // Update door
