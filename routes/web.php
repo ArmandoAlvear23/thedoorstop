@@ -18,19 +18,19 @@ Route::get('/', [PageController::class, 'index']);
 //Get About View
 Route::get('/about', function() {
     return view('pages.about');
-});
+})->name('about');
 
 // Get Contact View
 Route::get('/contact', function() {
     return view('pages.contact');
-});
+})->name('contact');
 
 ////////////////////////////////
 // Door Routes
 ////////////////////////////////
 
 // Get All Doors View
-Route::get('/doors', [DoorController::class, 'index']);
+Route::get('/doors', [DoorController::class, 'index'])->name('indexDoor');
 
 // Get Create Door View
 Route::get('/internal/doors/create', [DoorController::class, 'create'])->name('createDoor')->middleware('auth');
@@ -46,9 +46,6 @@ Route::put('/internal/doors/{door}', [DoorController::class, 'update'])->name('u
 
 // Delete Door
 Route::delete('/internal/doors/{door}', [DoorController::class, 'destroy'])->name('destroyDoor')->middleware('auth');
-
-// Get Manage Door View
-Route::get('/internal/doors/{door}/manage', [DoorController::class, 'manage'])->name('manageDoor')->middleware('auth');
 
 // Get Show Door View
 Route::get('/doors/{door}', [DoorController::class, 'show'])->name('showDoor');
@@ -72,13 +69,12 @@ Route::put('/internal/door/classifications/{classification}', [ClassificationCon
 // Delete Classification
 Route::delete('/internal/door/classifications/{classification}', [ClassificationController::class, 'destroy'])->name('destroyClassification')->middleware('auth');
 
-
 ////////////////////////////////
 // Category Routes
 ////////////////////////////////
 
 // Get All Categories View
-Route::get('/internal/door/categories', [CategoryController::class, 'index'])->middleware('auth');
+Route::get('/internal/door/categories', [CategoryController::class, 'index'])->name('indexCategory')->middleware('auth');
 
 // Get Create Category View
 Route::get('/internal/door/categories/create/{classification}', [CategoryController::class, 'create'])->name('createCategory')->middleware('auth');
@@ -100,20 +96,17 @@ Route::delete('/internal/door/categories/{category}', [CategoryController::class
 ////////////////////////////////
 
 // Get All Messages View
-Route::get('/internal/messages', [MessageController::class, 'index'])->middleware('auth');
+Route::get('/internal/messages', [MessageController::class, 'index'])->name('indexMessage')->middleware('auth');
 
 // Store New Message
 Route::post('/internal/messages', [MessageController::class, 'store'])->name('storeMessage')->middleware('auth');
-
-// Get Show Message View
-Route::get('/internal/messages/{listing}', [MessageController::class, 'show'])->name('showMessage')->middleware('auth');
 
 ////////////////////////////////
 // User Routes
 ////////////////////////////////
 
 // Show Register/Create Form
-Route::get('/internal/register', [UserController::class, 'create'])->middleware('guest');
+Route::get('/internal/register', [UserController::class, 'create'])->name('createUser')->middleware('guest');
 
 // Create New User
 Route::post('/users', [UserController::class, 'store'])->name('registerUser');
