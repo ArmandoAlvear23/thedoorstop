@@ -71,7 +71,24 @@
                         </div>
                         <div class="col-span-2 sm:col-span-1 lg:col-span-2">
                             <label 
-                                for="name" 
+                                for="phone" 
+                                class="text-xl text-primary font-bold">
+                                Phone</label
+                            >
+                            <input 
+                                type="text" 
+                                class="border border-gray-200 rounded mt-2 p-2 w-full h-8" 
+                                name="phone" 
+                                placeholder="Enter your phone #"
+                                value="{{ old('phone') }}"
+                            />
+                            @error('phone')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-span-2">
+                            <label 
+                                for="email" 
                                 class="text-xl text-primary font-bold">
                                 Email</label
                             >
