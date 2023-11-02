@@ -23,7 +23,10 @@ class DoorController extends Controller
     // Get create door view
     public function create() {
         $classifications = Classification::query()->with(['categories', 'categories' => fn($q) => $q->withCount('doors')->orderBy('doors_count', 'DESC')])->orderBy('id','ASC')->get();
-        return view('doors.create')->with('classifications', $classifications);
+        $dbPromotionList = Promotion::query()->get();
+        return view('doors.create')
+            ->with('classifications', $classifications)
+            ->with('dbPromotionList', $dbPromotionList);
     }
 
     // Store door data
@@ -39,9 +42,14 @@ class DoorController extends Controller
             $formFields['img_location'] = $request->file('photo')->store('doors', 'public');
         }
 
+        // Create door with form data
         $door = Door::create($formFields);
         
+        // Add door categories
         $this->addCategories($request, $door);
+
+        // Add door promotions
+        $this->addPromotions($request, $door);
 
         return redirect('/')->with('message', 'Door created successfully!');
     }
