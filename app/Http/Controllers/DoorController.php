@@ -95,6 +95,13 @@ class DoorController extends Controller
         //return redirect('/')->with('message', 'Door created successfully!');
     }
 
+    // Delete door
+    public function destroy(Door $door) {
+        $door->delete();
+        return redirect()->route('indexDoor')->with('message', "Door deleted succesfully!");
+    }
+
+    // Get single door view
     public function show(Door $door) {
         return view('doors.show', [
             'door' => $door
