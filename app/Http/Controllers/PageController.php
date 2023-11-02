@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Door;
-use Illuminate\Http\Request;
 use App\Models\Classification;
 
 class PageController extends Controller
