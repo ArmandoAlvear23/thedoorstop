@@ -12,12 +12,16 @@
                 <a href="/doors/{{$door->id}}">{{$door->name}}</a>
             </h3>
             <div class="text-xs font-light text-gray-500 mb-4">{{$door->sku}}</div>
-            <div>
-                @unless (count($door->categories) == 0)
+            @unless (count($door->categories) == 0)
+                <div>
                     <x-door-tags :tagsArr="$door->categories" :activeFilters="$activeFilters" />
-                @endunless
-            </div>
+                </div>
+            @endunless
+            
             @auth
+                @unless (count($door->promotions) == 0)
+                    <x-door-promotion-tags :tagsArr="$door->promotions" :activeFilters="$activeFilters" />
+                @endunless
                 <div class="mt-6">
                     <a href="{{ route('editDoor', ['door' => $door]) }}" class="rounded-md border-2 border-gray-500 text-gray-500 bg-transparent hover:bg-gray-500 hover:text-white transition ease-out duration-200 px-5 py-1.5">Edit Door</a>
                 </div>
