@@ -48,7 +48,7 @@
                         Update Category
                     </button>
     
-                    <a href="/internal/door/categories" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
+                    <a href="{{ route('indexCategory') }}" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
                 </div>
             </form>
         </div>

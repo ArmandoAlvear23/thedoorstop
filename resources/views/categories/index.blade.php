@@ -36,7 +36,7 @@
                                     <div class="flex flex-row justify-between">
                                         <div class="flex flex-col">
                                             <span>{{ ucfirst($category->name); }}</span>
-                                            <a href="/doors?category%5B%5D={{ $category->id }}" class="text-xs text-gray-500 align-bottom" target="_blank">Doors: {{ $category->doors_count }}</a>
+                                            <a href="{{ route('indexDoor', 'category%5B%5D='.$category->id) }}" class="text-xs text-gray-500 align-bottom" target="_blank">Doors: {{ $category->doors_count }}</a>
                                         </div>
                                         <div class="flex flex-row space-x-3">
                                             <button onclick="window.location='{{ URL::route('editCategory', ['category' => $category]); }}'" class="text-white rounded bg-blue-500 hover:bg-blue-600 px-3 py-1.5 hover:cursor-pointer transition ease-out duration-200"><i class="fa-regular fa-pen-to-square"></i> Edit</button>
