@@ -146,7 +146,7 @@
                     @method("DELETE")
                     <button 
                       class="text-white font-normal rounded bg-red-500 hover:bg-red-600 px-4 py-2 hover:cursor-pointer transition ease-out duration-200 mt-6 w-full"
-                      onclick="return confirm('Are you sure you want to delete this door?')"
+                      onclick="return confirm('Are you sure you want to delete the {{ $door->name }} door?')"
                     >
                     <i
                       class="fa-solid fa-trash-can fa-sm"
