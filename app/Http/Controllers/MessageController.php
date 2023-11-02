@@ -17,6 +17,8 @@ class MessageController extends Controller
 
     //Store message
     public function store(Request $request){
+
+        // Validate form input
         $formFields = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email'],
@@ -24,9 +26,11 @@ class MessageController extends Controller
             'phone' => ''
         ]);
 
+        // Store message to database
         Message::create($formFields);
 
-        return redirect('/')->with('message', 'Message sent successfully!');
+        // Redirect to home page
+        return redirect()->route('home')->with('message', 'Message sent successfully!');
     }
 
 }
