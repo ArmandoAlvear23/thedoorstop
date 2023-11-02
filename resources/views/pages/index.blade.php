@@ -1,4 +1,3 @@
 <x-layout>
-    @include('partials._hero')
-
+    <x-hero :heroImages="$heroImages"></x-hero>
 </x-layout>

@@ -6,15 +6,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClassificationController;
+use App\Http\Controllers\PageController;
 
 ////////////////////////////////
 // Navigation Routes
 ////////////////////////////////
 
 // Get Home View
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/', [PageController::class, 'index']);
 
 //Get About View
 Route::get('/about', function() {
