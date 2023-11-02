@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('sku')->nullable();
+            $table->string('description')->nullable();
             $table->longText('img_location');
             $table->timestamps();
         });

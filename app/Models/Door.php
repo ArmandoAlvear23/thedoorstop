@@ -10,7 +10,7 @@ class Door extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'sku', 'img_location'];
+    protected $fillable = ['name', 'sku', 'description', 'img_location'];
 
     public function scopeFilter($query, array $filters) {
         

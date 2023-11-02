@@ -34,7 +34,8 @@ class DoorController extends Controller
 
         $formFields = $request->validate([
             'name' => ['required', Rule::unique('doors', 'name')],
-            'sku' => 'required',
+            'sku' => ['required', Rule::unique('doors', 'sku')],
+            'description' => '',
             'photo' => 'required'
         ]);
         
@@ -68,7 +69,8 @@ class DoorController extends Controller
 
         $formFields = $request->validate([
             'name' => 'required',
-            'sku' => 'required'
+            'sku' => 'required',
+            'description' => '',
         ]);
 
         if($request->hasFile('photo')) {

@@ -44,6 +44,22 @@
                     @enderror
                 </div>
                 <div class="mb-6">
+                  <label
+                      for="description"
+                      class="inline-block text-lg text-gray-700 mb-2"
+                      >Description</label
+                  >
+                  <textarea
+                      class="border border-gray-200 rounded p-2 w-full"
+                      name="description"
+                      placeholder="Door description"
+                      rows="3"
+                  >{{ old('description') ? old('description') : ($door->description ? $door->description : '') }}</textarea>
+                  @error('description')
+                      <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                  @enderror
+              </div>
+                <div class="mb-6">
                   <div x-data="imgPreview" x-cloak>
                     <label for="photo" class="inline-block text-lg text-gray-700 mb-2">
                         Photo
