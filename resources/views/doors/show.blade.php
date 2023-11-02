@@ -20,8 +20,9 @@
                 <div class="mb-6 px-4">
                     <p class="text-md font-normal text-gray-600">{{ $door->description }}</p>
                 </div>
+                <hr />
             @endunless
-            <div class="mt-10 flex justify-center items-center">
+            <div class="mt-4 flex justify-center items-center">
                 <x-door-tags :tagsArr="$door->categories" :activeFilters="array()"></x-door-tags>
             </div>
             @auth
@@ -34,9 +35,7 @@
                     <a href="{{ route('editDoor', ['door' => $door]) }}" class="rounded-md border-2 border-gray-500 text-gray-500 bg-transparent hover:bg-gray-500 hover:text-white transition ease-out duration-200 px-5 py-1.5">Edit Door</a>
                 </div>
             @endauth
-           
             <div class="flex flex-col justify-center">
-               
                 <a href="{{ URL::previous() }}" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
             </div>
         </div>
