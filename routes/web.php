@@ -13,7 +13,7 @@ use App\Http\Controllers\PageController;
 ////////////////////////////////
 
 // Get Home View
-Route::get('/', [PageController::class, 'index']);
+Route::get('/', [PageController::class, 'index'])->name('home');
 
 //Get About View
 Route::get('/about', function() {
