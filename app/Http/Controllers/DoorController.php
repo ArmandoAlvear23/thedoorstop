@@ -52,7 +52,8 @@ class DoorController extends Controller
         // Add door promotions
         $this->addPromotions($request, $door);
 
-        return redirect('/')->with('message', 'Door created successfully!');
+        // Return to door index page
+        return redirect()->route('indexDoor')->with('message', 'Door ['.$door->name.'] uploaded successfully!');
     }
 
     // Get edit door view
@@ -91,14 +92,21 @@ class DoorController extends Controller
         // Update door promotions
         $this->addPromotions($request, $door);
 
-        return back();
-        //return redirect('/')->with('message', 'Door created successfully!');
+        // Return to door index page
+        return redirect()->route('indexDoor')->with('message', 'Door ['.$door->name.'] updated successfully!');
     }
 
     // Delete door
     public function destroy(Door $door) {
+
+        // Get door name for delete message
+        $doorName = $door->name;
+        
+        // Delete door from database
         $door->delete();
-        return redirect()->route('indexDoor')->with('message', "Door deleted succesfully!");
+        
+        // Return to door index page
+        return redirect()->route('indexDoor')->with('message', 'Door ['.$doorName.'] deleted succesfully!');
     }
 
     // Get single door view
@@ -108,15 +116,15 @@ class DoorController extends Controller
         ]);
     }
 
+    // Store door categories
     public function addCategories(Request $request, Door $door) {
-       
-        // Store Door's Categories
+        
         $door->categories()->sync($request->categories);
     }
 
+    // Store door promotions
     public function addPromotions(Request $request, Door $door) {
        
-        // Store Door's Promotions
         $door->promotions()->sync($request->promotions);
     }
 
