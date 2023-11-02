@@ -95,6 +95,12 @@ class DoorController extends Controller
         //return redirect('/')->with('message', 'Door created successfully!');
     }
 
+    public function show(Door $door) {
+        return view('doors.show', [
+            'door' => $door
+        ]);
+    }
+
     public function addCategories(Request $request, Door $door) {
        
         // Store Door's Categories

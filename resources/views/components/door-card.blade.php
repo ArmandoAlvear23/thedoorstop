@@ -9,7 +9,7 @@
         />
         <div>
             <h3 class="text-2xl font-normal text-gray-800 mb-1">
-                <a href="/doors/{{$door->id}}">{{$door->name}}</a>
+                <a href="{{ route('showDoor', $door->id) }}"">{{$door->name}}</a>
             </h3>
             <div class="text-xs font-light text-gray-500 mb-4">{{$door->sku}}</div>
             @unless (count($door->categories) == 0)
