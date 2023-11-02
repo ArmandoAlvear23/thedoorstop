@@ -20,7 +20,8 @@ class MessageController extends Controller
         $formFields = $request->validate([
             'name' => 'required',
             'email' => ['required', 'email'],
-            'message' => 'required'
+            'message' => 'required',
+            'phone' => ''
         ]);
 
         Message::create($formFields);
@@ -28,10 +29,4 @@ class MessageController extends Controller
         return redirect('/')->with('message', 'Message sent successfully!');
     }
 
-    // Show single message
-    public function show(Message $message) {
-        return view('messages.show', [
-            'message' => $message
-        ]);
-    }
 }

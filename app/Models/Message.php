@@ -9,11 +9,13 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'message'];
+    protected $fillable = ['name', 'email', 'phone', 'message'];
 
     public function scopeFilter($query, array $filters) {
         if($filters['search'] ?? false) {
-            $query->where('name', 'like', '%' .request('search') . '%')->orWhere('email', 'like', '%' .request('search') . '%')->orWhere('phone', 'like', '%' .request('search') . '%');
+            $query->where('name', 'like', '%' .request('search') . '%')
+                ->orWhere('email', 'like', '%' .request('search') . '%')
+                ->orWhere('phone', 'like', '%' .request('search') . '%');
         }
     }
 }

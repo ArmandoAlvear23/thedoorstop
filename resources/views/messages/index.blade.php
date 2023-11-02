@@ -14,7 +14,7 @@
                                 <th class="bg-blue-200 border text-left px-6 py-4">Name</th>
                                 <th class="bg-blue-200 border text-left px-6 py-4">Contact</th>
                                 <th class="bg-blue-200 border text-left px-6 py-4">Message</th>
-                                <th class="bg-blue-200 border text-left px-6 py-4">View</th>
+                                <th class="bg-blue-200 border text-left px-6 py-4">Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,7 +28,7 @@
                                         </div>
                                     </td>
                                     <td class="border px-6 py-4">{{ $message->message }}</td>
-                                    <td class="border px-6 py-4"><a href="/internal/messages/{{ $message->id }}"class="">View</a></td>
+                                    <td class="border px-6 py-4">{{ date_format($message->created_at, "m/d/Y") }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
