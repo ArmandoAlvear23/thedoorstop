@@ -13,7 +13,10 @@
                                     <form method="POST" action="{{ URL::route('destroyClassification', ['classification' => $classification]); }}">
                                         @csrf
                                         @method("DELETE")
-                                        <button class="text-white font-normal rounded bg-red-500 hover:bg-red-600 px-2 py-0.5 ml-2 hover:cursor-pointer disabled:bg-red-300 disabled:cursor-auto transition ease-out duration-200" {{ count($classification->categories) > 0 ? 'disabled' : '' }}>
+                                        <button 
+                                            class="text-white font-normal rounded bg-red-500 hover:bg-red-600 px-2 py-0.5 ml-2 hover:cursor-pointer disabled:bg-red-300 disabled:cursor-auto transition ease-out duration-200" {{ count($classification->categories) > 0 ? 'disabled' : '' }}
+                                            onclick="return confirm('Are you sure you want to delete the {{ $classification->name }} classification?')"
+                                        >   
                                             <i
                                                 class="fa-solid fa-trash-can fa-sm"
                                             ></i>
@@ -41,7 +44,10 @@
                                             <form method="POST" action="{{ URL::route('destroyCategory', ['category' => $category]); }}">
                                                 @csrf
                                                 @method("DELETE")
-                                                <button class="text-white rounded bg-red-500 hover:bg-red-600 px-3 py-2 hover:cursor-pointer disabled:bg-red-300 disabled:cursor-auto transition ease-out duration-200" {{ $category->doors_count > 0 ? 'disabled' : '' }}>
+                                                <button 
+                                                    class="text-white rounded bg-red-500 hover:bg-red-600 px-3 py-2 hover:cursor-pointer disabled:bg-red-300 disabled:cursor-auto transition ease-out duration-200" {{ $category->doors_count > 0 ? 'disabled' : '' }}
+                                                    onclick="return confirm('Are you sure you want to delete the {{ $category->name }} category?')"
+                                                >
                                                     <i
                                                         class="fa-solid fa-trash-can"
                                                     ></i>
