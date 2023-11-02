@@ -140,12 +140,12 @@
                       Update Door
                   </button>
                 </form>
-                <a href="{{ URL::previous() }}" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
+                <a href="{{ URL::previous() }}" class="text-white text-center mt-6 py-2 w-full bg-primary rounded  hover:bg-primary2 transition ease-out duration-200"> <i class="fa-solid fa-backward"></i> Back </a>
                   <form method="POST" action="{{ route('destroyDoor', $door) }}">
                     @csrf
                     @method("DELETE")
                     <button 
-                      class="text-white font-normal rounded bg-red-500 hover:bg-red-600 px-4 py-2 hover:cursor-pointer transition ease-out duration-200 mt-12 w-full"
+                      class="text-white font-normal rounded bg-red-500 hover:bg-red-600 px-4 py-2 hover:cursor-pointer transition ease-out duration-200 mt-6 w-full"
                       onclick="return confirm('Are you sure you want to delete this door?')"
                     >
                     <i
