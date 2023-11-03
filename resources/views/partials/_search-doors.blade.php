@@ -1,4 +1,4 @@
-<form action="/doors">
+<form action="{{ route('indexDoor') }}">
     <div class="relative border-2 border-gray-100 my-4 rounded-lg">
         <div class="absolute top-4 left-3">
             <i
