@@ -101,6 +101,11 @@ class DoorController extends Controller
 
         // Get door name for delete message
         $doorName = $door->name;
+
+        // Delete photo file
+        if(File::exists(public_path('storage/'.$door->img_location))){
+            File::delete(public_path('storage/'.$door->img_location));
+        }
         
         // Delete door from database
         $door->delete();
