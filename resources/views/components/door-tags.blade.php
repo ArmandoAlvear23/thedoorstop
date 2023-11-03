@@ -28,7 +28,7 @@
         <li
             class="flex items-center justify-center text-black bg-transparent border-2 border-gray-500 hover:text-white hover:bg-gray-500 rounded-xl py-1 px-3 text-xs transition ease-out duration-200"
         >
-            <a href="/doors?category%5B%5D={{$tag->id}}">{{ucfirst($tag->name)}}</a>
+            <a href="{{ route('indexDoor', 'category%5B%5D='.$tag->id) }}">{{ ucfirst($tag->name) }}</a>
         </li>
         @endif
     @endforeach

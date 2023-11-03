@@ -1,5 +1,5 @@
 @props(['classifications', 'activeFilters'])
-<form action="/doors">
+<form action="{{ route('indexDoor') }}">
     <div class="w-full mb-1 flex gap-2">
         <select id="categories" name="category[]" multiple x-data="multiselect" x-cloak>
         @foreach($classifications as $classification)
