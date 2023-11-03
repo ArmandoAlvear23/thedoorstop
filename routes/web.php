@@ -7,6 +7,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TestimonialController;
 
 ////////////////////////////////
 // Navigation Routes
@@ -90,6 +91,28 @@ Route::put('/internal/door/categories/{category}', [CategoryController::class, '
 
 // Delete Category
 Route::delete('/internal/door/categories/{category}', [CategoryController::class, 'destroy'])->name('destroyCategory')->middleware('auth');
+
+////////////////////////////////
+// Testimonial Routes
+////////////////////////////////
+
+// Get All Testimonials View
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('indexTestimonial');
+
+// Get Create Testimonial View
+Route::get('/internal/testimonials/create', [TestimonialController::class, 'create'])->name('createTestimonial')->middleware('auth');
+
+// Store New Testimonial
+Route::post('/internal/testimonials', [TestimonialController::class, 'store'])->name('storeTestimonial')->middleware('auth');
+
+// Get Edit Testimonial View
+Route::get('/internal/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('editTestimonial')->middleware('auth');
+
+// Update Testimonial
+Route::put('/internal/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('updateTestimonial')->middleware('auth');
+
+// Destroy Testimonial
+Route::delete('/internal/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('destroyTestimonial')->middleware('auth');
 
 ////////////////////////////////
 // Message Routes
