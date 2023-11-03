@@ -11,7 +11,7 @@
         <!-- Header -->
         <div class="py-px px-6 flex justify-between items-center bg-primary sm:bg-gray-100 lg:px-56">
             <div>
-                <a href="/">
+                <a href="{{ route('home') }}">
                     <img src="{{ asset("images/the-door-stop-logo.png") }}" alt="The Door Stop" class="w-28">
                 </a>
             </div>
