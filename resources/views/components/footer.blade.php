@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="text-center mt-12 font-light text-xs text-gray-400">
-            Copyright ©2023, The Door Stop - All rights reserved.
+            Copyright ©{{ date('Y') }}, The Door Stop - All rights reserved.
         </div>
     </section>
     <div class="w-full h-12 bg-gray-600"></div>
