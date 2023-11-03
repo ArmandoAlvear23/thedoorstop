@@ -1,7 +1,12 @@
 <x-layout>
     <x-padding-wrapper>
         <div class="pt-10">
-            <h2 class="text-2xl text-gray-700 font-light"><i class="fa-solid fa-star py-3"></i>Testimonials</h2>
+            <div class="flex flex-row">
+                    <h2 class="text-2xl text-gray-700 font-light"><i class="fa-solid fa-star py-3"></i>Testimonials</h2>
+                    @auth
+                        <a href="{{ route('createTestimonial') }}" class="text-white rounded bg-green-500 hover:bg-green-600 transition ease-out duration-200 px-4 py-2 mb-2 ml-auto">Add Testimonial</a>
+                    @endauth
+            </div>
             <hr />
             <div class="flex flex-col gap-4 font-light text-gray-700 py-8">
                 <p>
