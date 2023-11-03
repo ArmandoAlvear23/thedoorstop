@@ -21,7 +21,7 @@
                 <div class="text-gray-500 font-normal flex flex-col gap-1 text-sm">
                     <a href="{{ route('about') }}" >About Us</a>
                     <a href="{{ route('contact') }}">Contact Us</a>
-                    <a href="{{ route('home') }}">Testimonials</a>
+                    <a href="{{ route('indexTestimonial') }}">Testimonials</a>
                 </div>
             </div>
             <div class="">
