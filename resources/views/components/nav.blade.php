@@ -97,6 +97,9 @@
                         <a href="{{ route('indexMessage') }}" class="my-2 w-full bg-primary {{ Route::is('indexMessage') ? 'text-secondary border-secondary' : 'text-white border-gray-300' }} border-b-2 border-dashed hover:text-secondary hover:border-secondary transition ease-out duration-500">
                             <li class="pb-2">Messages (Admin)</li>
                         </a>
+                        <a href="{{ route('indexTestimonial') }}" class="my-2 w-full bg-primary {{ Route::is('indexTestimonial') ? 'text-secondary border-secondary' : 'text-white border-gray-300' }} border-b-2 border-dashed hover:text-secondary hover:border-secondary transition ease-out duration-500">
+                            <li class="pb-2">Testimonials (Admin)</li>
+                        </a>
                         <li class="my-2 w-full bg-primary border-b-2 border-dashed hover:text-secondary hover:border-secondary transition ease-out duration-500">
                             <form method="POST" action="{{ route('logoutUser') }}" class="pb-2">
                                 @csrf

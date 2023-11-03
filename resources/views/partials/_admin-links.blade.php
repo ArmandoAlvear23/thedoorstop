@@ -10,6 +10,9 @@
 <li class="{{ Route::is('indexMessage') ? 'border-white' : 'border-transparent' }} border-b-2 hover:border-white transition ease-out duration-500">
     <a href="{{ route('indexMessage') }}" class="text-white uppercase text-sm">Messages</a>
 </li>
+<li class="{{ Route::is('indexTestimonial') ? 'border-white' : 'border-transparent' }} border-b-2 hover:border-white transition ease-out duration-500">
+    <a href="{{ route('indexTestimonial') }}" class="text-white uppercase text-sm">Testimonials</a>
+</li>
 <li>
     <form method="POST" action="{{ route('logoutUser') }}" class="inline">
         @csrf
