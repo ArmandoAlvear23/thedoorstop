@@ -120,7 +120,7 @@
                     >
                       Add Door
                     </button>
-                    <a href="/internal/door/categories" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
+                    <a href="{{ URL::previous() }}" class="text-black ml-auto mt-4"> <i class="fa-solid fa-backward"></i> Back </a>
                 </div>
             </form>
         </div>
