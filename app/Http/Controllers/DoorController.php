@@ -40,7 +40,7 @@ class DoorController extends Controller
         ]);
         
         if($request->hasFile('photo')) {
-            $formFields['img_location'] = $request->file('photo')->store('doors', 'public');
+            $formFields['img_location'] = 'storage/'.$request->file('photo')->store('doors', 'public');
         }
 
         // Create door with form data
@@ -76,11 +76,11 @@ class DoorController extends Controller
 
         if($request->hasFile('photo')) {
             // Delete old photo file
-            if(File::exists(public_path('storage/'.$door->img_location))){
-                File::delete(public_path('storage/'.$door->img_location));
+            if(File::exists(public_path($door->img_location))){
+                File::delete(public_path($door->img_location));
             }
             // Store new photo file and get location of new file
-            $formFields['img_location'] = $request->file('photo')->store('doors', 'public');
+            $formFields['img_location'] = 'storage/'.$request->file('photo')->store('doors', 'public');
         }
 
         // Update door with new data
@@ -103,8 +103,8 @@ class DoorController extends Controller
         $doorName = $door->name;
 
         // Delete photo file
-        if(File::exists(public_path('storage/'.$door->img_location))){
-            File::delete(public_path('storage/'.$door->img_location));
+        if(File::exists(public_path($door->img_location))){
+            File::delete(public_path($door->img_location));
         }
         
         // Delete door from database
