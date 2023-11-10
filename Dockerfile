@@ -5,7 +5,7 @@ ARG user
 ARG uid
 
 # Install system dependencies
-RUN yum update && yum install -y \
+RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpng-dev \
