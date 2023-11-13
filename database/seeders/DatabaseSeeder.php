@@ -21,11 +21,13 @@ class DatabaseSeeder extends Seeder
 
         //Create Promotion records
         Promotion::create([
-            'name' => 'hero'
+            'name' => 'hero',
+            'description' => 'home page banner pictures'
         ]);
 
         Promotion::created([
-            'name' => 'home'
+            'name' => 'home',
+            'description' => 'home page door list'
         ]);
 
         // Create test message
