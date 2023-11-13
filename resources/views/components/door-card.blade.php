@@ -1,14 +1,14 @@
 @props(['door', 'activeFilters'])
 
 <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 shadow-sm">
-    <div class="flex">
-        <img
-            class="rounded-md w-48 h-full mr-6"
-            src="{{$door->img_location ? asset($door->img_location) : asset('images/no-image.png')}}"
-            alt="door photo"
-        />
+    <div class="flex flex-col md:flex-row">
+            <img
+                class="rounded-md w-full md:w-48 h-full mr-6"
+                src="{{$door->img_location ? asset($door->img_location) : asset('images/no-image.png')}}"
+                alt="door photo"
+            />
         <div>
-            <h3 class="text-2xl font-normal text-gray-800 mb-1">
+            <h3 class="text-2xl font-normal text-gray-800 mb-1 mt-2 md:mt-0">
                 <a href="{{ route('showDoor', $door->id) }}">{{$door->name}}</a>
             </h3>
             <div class="text-xs font-light text-gray-500 mb-4">{{$door->sku}}</div>
