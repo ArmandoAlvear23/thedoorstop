@@ -1,4 +1,8 @@
 version: "3.8"
+
+#volumes:
+#  db-data-test:
+
 services:
   app:
     build:
@@ -21,13 +25,14 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
+      MYSQL_TCP_PORT: 3306
       SERVICE_TAGS: prod
       SERVICE_NAME: mysql
     volumes:
-      - ./docker-compose/mysql:/data/db
+      - ./docker-compose/mysql:/var/lib/mysql
     networks:
       - thedoorstop
   nginx:
@@ -41,6 +46,22 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d
     networks:
       - thedoorstop
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: thedoorstop-pma
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - 8080:80
+    links:
+      - db
+    networks:
+      - thedoorstop
+    depends_on:
+      - db
 
 networks:
   thedoorstop:
