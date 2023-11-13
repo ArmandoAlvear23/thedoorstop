@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'home page banner pictures'
         ]);
 
-        Promotion::created([
+        Promotion::create([
             'name' => 'home',
             'description' => 'home page door list'
         ]);
