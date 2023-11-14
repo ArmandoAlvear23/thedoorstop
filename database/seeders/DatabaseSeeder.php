@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //\App\Models\User::factory(5)->create();
 
         //Create Promotion records
         Promotion::create([
@@ -30,9 +29,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'home',
             'description' => 'home page door list'
         ]);
-
-        // Create test message
-        Message::factory(10)->create();
 
         // Create category classifications
         Classification::create([
