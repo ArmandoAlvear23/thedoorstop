@@ -11,7 +11,7 @@ class TestimonialController extends Controller
     public function index() {
 
         return view('testimonials.index', [
-            'testimonials' => Testimonial::latest()->paginate(25)
+            'testimonials' => Testimonial::query()->inRandomOrder()->get()
         ]);
     }
 
