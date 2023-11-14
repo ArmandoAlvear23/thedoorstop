@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('doors', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('sku')->nullable();
             $table->longText('description')->nullable();
             $table->longText('img_location');
             $table->timestamps();

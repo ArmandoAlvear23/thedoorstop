@@ -27,23 +27,6 @@
                     @enderror
                 </div>
                 <div class="mb-6">
-                    <label
-                        for="sku"
-                        class="inline-block text-lg text-gray-700 mb-2"
-                        >SKU#</label
-                    >
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="sku"
-                        placeholder="Door SKU#"
-                        value="{{ old('sku') ? old('sku') : ($door->sku ? $door->sku : '') }}"
-                    />
-                    @error('sku')
-                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
                   <label
                       for="description"
                       class="inline-block text-lg text-gray-700 mb-2"

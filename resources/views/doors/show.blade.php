@@ -13,11 +13,8 @@
                     alt="door photo"
                 />
             </div>
-            <div class="mb-6 flex justify-end items-center w-11/12 lg:10/12">
-                <span class="text-xs font-light text-gray-400">SKU: {{ $door->sku }}</span>
-            </div>
             @unless (!isset($door->description))
-                <div class="mb-6 px-4">
+                <div class="mb-6 mt-6 px-6">
                     <p class="text-md font-normal text-gray-600">{{ $door->description }}</p>
                 </div>
                 <hr />

@@ -10,13 +10,12 @@ class Door extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'sku', 'description', 'img_location'];
+    protected $fillable = ['name', 'description', 'img_location'];
 
     public function scopeFilter($query, array $filters) {
         
         if($filters['search'] ?? false) {
             $query->where('name', 'like', '%' . request('search') . '%')
-            ->orWhere('sku', 'like', '%' . request('search') . '%')
             ->orWhereHas('categories',  
             function(Builder $query) {
                 $query->where('name', 'like', '%'.request('search').'%');

@@ -85,28 +85,7 @@ class DatabaseSeeder extends Seeder
             'classification_id' => 3
         ]);
 
-        //Create doors
-        Door::create([
-            'name' => 'Modern Door 1',
-            'sku' => 'moderndoor1',
-            'img_location' => 'storage/doors/3x4rYhQu4gtXG3HpuIUaiFJ5LGQyvtn5R9uI2qdp.png',
-        ]);
-        Door::create([
-            'name' => 'Traditional Door 1',
-            'sku' => 'traddoor1',
-            'img_location' => 'storage/doors/ZXoWOAjjVgzZdHZM1TItTlF1F8NbIgK0qpdZBODG.png',
-        ]);
-        Door::create([
-            'name' => 'Rustic Door 1',
-            'sku' => 'rusticdoor1',
-            'img_location' => 'storage/doors/4u1V6LRFmBvtt3rfhHIKTr81myIV2brw2UglbgVX.png',
-        ]);
-        Door::create([
-            'name' => 'Craftsman Door 1',
-            'sku' => 'craftdoor1',
-            'img_location' => 'storage/doors/zUCW08nZyOArsR7TdilF2C1ogNzIFId5pdWAxIXP.png',
-        ]);
-
+        // Create Testimonials
         Testimonial::create([
             'name' => 'Michael A.',
             'testimonial' => 'Customer services was excellent they where very understanding of our delay and kept door for six months due to a hiccup with so called contractor out of Los Fresnos. Thank you The Door Stop for your wonderful service we appreciate I will recommend every to you.'
