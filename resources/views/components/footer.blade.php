@@ -13,7 +13,7 @@
                 <div class="text-gray-500 font-normal mt-4 text-sm"> 
                     <p>Phone: <a href="tel:956-574-9071">956-574-9071</a></p>
                     <p>Email: <a href="mailto:joedoors11@gmail.com">joedoors11@gmail.com</a></p>
-                    <a href="{{ route('home') }}" class="text-primary2">www.thedoorstop.com</a>
+                    <a href="{{ route('home') }}" class="text-primary2">www.thedoorstoprgv.com</a>
                 </div>
             </div>
             <div>
