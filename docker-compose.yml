@@ -1,7 +1,7 @@
 version: "3.8"
 
-#volumes:
-#  db-data-test:
+volumes:
+  db-data:
 
 services:
   app:
@@ -32,7 +32,7 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: mysql
     volumes:
-      - ./docker-compose/mysql:/var/lib/mysql
+      - db-data:/var/lib/mysql
     networks:
       - thedoorstop
   nginx:
@@ -62,7 +62,6 @@ services:
       - thedoorstop
     depends_on:
       - db
-
 networks:
   thedoorstop:
     driver: bridge
