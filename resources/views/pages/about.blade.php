@@ -1,5 +1,5 @@
 <x-layout> 
-    <img src="{{ asset('images/tds-store-front.png') }}" class="shadow-lg" alt="The Door Stop store front"/>
+    <img src="{{ asset('images/tds-store-front.webp') }}" class="shadow-lg" alt="The Door Stop store front"/>
     <x-padding-wrapper>
         <div class="mt-8">
             <!-- Introduction -->
