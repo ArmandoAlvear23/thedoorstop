@@ -25,8 +25,8 @@
                     </div>
                     <div>
                         <h4 class="text-primary font-bold text-xl">Email</h4>
-                        <a href="mailto:joedoors11@gmail.com">
-                            <p class="text-gray-600 font-normal">joedoors11@gmail.com</p>
+                        <a href="mailto:doorstop3414@gmail.com">
+                            <p class="text-gray-600 font-normal">doorstop3414@gmail.com</p>
                         </a>
                     </div>
                 </div>
